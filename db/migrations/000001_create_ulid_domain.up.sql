@@ -1,1 +1,1 @@
-drop domain ulid;
+create domain ulid as char(26);
