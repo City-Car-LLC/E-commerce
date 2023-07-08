@@ -51,7 +51,7 @@ type Product struct {
 	ImageURL    string   `json:"image_url"`
 	Price       float64  `json:"price"`
 	Status      string   `json:"status"`
-	Category    Category `json:"category"`
+	Category    Category `json:"-"`
 	ShopID      string   `json:"shop_id"` // Идентификатор магазина, к которому принадлежит товар
 }
 
