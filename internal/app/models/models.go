@@ -33,10 +33,10 @@ type Product struct {
 	Description string          `json:"description"`
 	Price       decimal.Decimal `json:"price"`
 	Status      string          `json:"status"`
-	Category    ProductCategory `json:"-"`
+	Category    Category        `json:"-"`
 }
 
-type ProductCategory struct {
+type Category struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
 }

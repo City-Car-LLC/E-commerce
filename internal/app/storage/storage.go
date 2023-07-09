@@ -19,7 +19,7 @@ func (s Storage) CreateShop(m *models.Shop) error {
 	return s.ORM.Create(m).Error
 }
 
-func (s Storage) CreateCategory(m *models.ProductCategory) error {
+func (s Storage) CreateCategory(m *models.Category) error {
 	return s.ORM.Create(m).Error
 }
 
@@ -41,12 +41,12 @@ func (s Storage) ReadShop(id string) (sh *models.Shop, err error) {
 	return
 }
 
-func (s Storage) ReadCategory(id string) (c *models.ProductCategory, err error) {
+func (s Storage) ReadCategory(id string) (c *models.Category, err error) {
 	err = s.ORM.Take(&c, "id", id).Error
 	return
 }
 
-func (s Storage) UpdateCategory(c *models.ProductCategory) error {
+func (s Storage) UpdateCategory(c *models.Category) error {
 	return s.ORM.Save(c).Error
 }
 
@@ -55,5 +55,9 @@ func (s Storage) UpdateShop(c *models.Shop) error {
 }
 
 func (s Storage) UpdateAddress(m *models.Address) error {
+	return s.ORM.Save(m).Error
+}
+
+func (s Storage) UpdateProduct(m *models.Product) error {
 	return s.ORM.Save(m).Error
 }

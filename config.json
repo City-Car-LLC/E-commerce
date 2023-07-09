@@ -1,0 +1,5 @@
+{
+    "app_host":"localhost",
+    "app_port":"5432",
+    "postgres_dsn":"user=postgres password=mspz3jic host=localhost port=5432 dbname=commerce sslmode=disable search_path=public TimeZone=Asia/Dushanbe"
+}
