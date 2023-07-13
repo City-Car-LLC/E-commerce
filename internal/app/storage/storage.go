@@ -61,3 +61,12 @@ func (s Storage) UpdateAddress(m *models.Address) error {
 func (s Storage) UpdateProduct(m *models.Product) error {
 	return s.ORM.Save(m).Error
 }
+
+type ReadCategoriesRequest struct {
+	*ReadRequest
+}
+
+func (s Storage) ReadCategories(r *ReadCategoriesRequest) (ms []*models.Category, err error) {
+	err = newFilterQuery(s.ORM, r.ReadRequest).q.Find(&ms).Error
+	return
+}

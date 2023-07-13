@@ -1,0 +1,16 @@
+info:
+  contact:
+    email: faranush.karimov@gmail.com
+    name: API Support
+    url: https://t.me/farafetch
+  license:
+    name: Custom License
+  title: E-COMMERCE API
+  version: "0.1"
+paths: {}
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

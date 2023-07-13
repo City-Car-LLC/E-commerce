@@ -1,0 +1,23 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "E-COMMERCE API",
+        "contact": {
+            "name": "API Support",
+            "url": "https://t.me/farafetch",
+            "email": "faranush.karimov@gmail.com"
+        },
+        "license": {
+            "name": "Custom License"
+        },
+        "version": "0.1"
+    },
+    "paths": {},
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

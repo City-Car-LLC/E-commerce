@@ -38,6 +38,7 @@ func run() error {
 			Config: *cfg,
 		},
 	}
+
 	router := handler.NewRouter(app, cfg)
 
 	addr := net.JoinHostPort(cfg.AppHost, cfg.AppPort)
@@ -50,6 +51,7 @@ func run() error {
 		IdleTimeout:       0,
 		MaxHeaderBytes:    0,
 	}
+
 	errCh := make(chan error)
 	var wg sync.WaitGroup
 
@@ -61,6 +63,6 @@ func run() error {
 			errCh <- fmt.Errorf("listen and serve: %w", err)
 		}
 	}()
-
+	wg.Wait()
 	return err
 }
