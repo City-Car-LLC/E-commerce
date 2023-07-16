@@ -31,6 +31,10 @@ func (s Storage) CreateAddress(m *models.Address) error {
 	return s.ORM.Create(m).Error
 }
 
+func (s Storage) CreateProduct(m *models.Product) error {
+	return s.ORM.Create(m).Error
+}
+
 func (s Storage) ReadOrder(id string) (o *models.Order, err error) {
 	err = s.ORM.Take(&o, "id", id).Error
 	return
@@ -68,5 +72,16 @@ type ReadCategoriesRequest struct {
 
 func (s Storage) ReadCategories(r *ReadCategoriesRequest) (ms []*models.Category, err error) {
 	err = newFilterQuery(s.ORM, r.ReadRequest).q.Find(&ms).Error
+	return
+}
+
+type ReadProductsRequest struct {
+	*ReadRequest
+	CategoryID string `json:"category_id"`
+}
+
+func (s Storage) ReadProducts(r *ReadProductsRequest) (m []*models.Product, err error) {
+	err = newFilterQuery(s.ORM, r.ReadRequest).
+		where("category_id=?", r.CategoryID).q.Find(&m).Error
 	return
 }

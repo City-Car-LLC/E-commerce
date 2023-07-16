@@ -12,7 +12,7 @@ import (
 // @Accept json
 // @Param body service.CreateCategoryRequest true "request"
 // @Success 200
-// @Router /api/regions/categories [post]
+// @Router /api/categories [post]
 func (h Handler) CreateCategories(req *http.Request) (resp interface{}, err error) {
 	r := new(service.CreateCategoryRequest)
 	if err = unmarshal(req, r); err != nil {
@@ -28,7 +28,7 @@ func (h Handler) CreateCategories(req *http.Request) (resp interface{}, err erro
 // @Produce json
 // @Param query storage.ReadCategoriesRequest true "request"
 // @Success 200 {object} []models.Category
-// @Router /api/regions/categories [get]
+// @Router /api/categories [get]
 func (h Handler) ReadCategories(req *http.Request) (resp interface{}, err error) {
 	r := new(storage.ReadCategoriesRequest)
 	if err = unmarshal(req, r); err != nil {

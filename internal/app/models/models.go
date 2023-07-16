@@ -1,6 +1,7 @@
 package models
 
 import (
+	"mime/multipart"
 	"time"
 
 	"github.com/shopspring/decimal"
@@ -22,6 +23,11 @@ type Address struct {
 	ShopID      string `json:"shop_id"`
 	Address     string `json:"address"`
 	Coordinates string `json:"coordinates"`
+}
+
+type File struct {
+	Meta    *multipart.FileHeader
+	Content multipart.File
 }
 
 type Product struct {

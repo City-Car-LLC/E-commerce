@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"reflect"
 	"strings"
 
 	"gorm.io/gorm"
@@ -46,4 +47,26 @@ func (f *filterQuery) searchMany(order *orderByBuilder, search string, fields []
 
 	order.ToQuery(f.q)
 	return f
+}
+
+func (f *filterQuery) where(sql string, arg interface{}) *filterQuery {
+	if empty(arg) {
+		return f
+	}
+	f.q.Where(sql, arg)
+	return f
+}
+
+func empty(i interface{}) bool {
+	v := reflect.ValueOf(i)
+	if v.Kind() == reflect.Ptr {
+		if v.IsNil() {
+			return true
+		}
+		v = v.Elem()
+	}
+	if v.Kind() == reflect.Bool {
+		return false
+	}
+	return v.IsZero()
 }
