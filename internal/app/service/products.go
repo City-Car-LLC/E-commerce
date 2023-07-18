@@ -24,6 +24,7 @@ func (s *Service) CreateProducts(r *CreateProductRequest) error {
 		Price:       r.Price,
 		Status:      r.Status,
 		CategoryID:  r.CategoryID,
+		Image:       r.Image,
 	}
 	return e(s.Storage.CreateProduct(product))
 }

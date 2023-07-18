@@ -35,6 +35,8 @@ func NewRouter(h Handler, cfg *config.Config) *chi.Mux {
 	api.Route("/categories", func(r chi.Router) {
 		r.Post("/", H(h.CreateCategories))
 		r.Get("/", H(h.ReadCategories))
+		r.Post("/products/", H(h.CreateProducts))
+		r.Get("/products/", H(h.ReadProducts))
 	})
 
 	return router

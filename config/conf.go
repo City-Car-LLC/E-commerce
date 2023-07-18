@@ -36,6 +36,11 @@ func set(s, v string) string {
 }
 
 func NewConfig(filepath string) (*Config, error) {
+
+	folder := "./files/"
+	if _, err := os.Stat(folder); err != nil {
+		os.Mkdir(folder, 0755)
+	}
 	file, err := os.Open(filepath)
 	if err != nil {
 		return nil, fmt.Errorf("open %s: %w", filepath, err)
