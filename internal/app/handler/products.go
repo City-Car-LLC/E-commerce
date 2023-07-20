@@ -16,7 +16,7 @@ import (
 // @Security ApiKeyAuth
 // @Tags products
 // @Accept json
-// @Param body multipart/form-data service.CreateProductRequest true "request"
+// @Param request body service.CreateProductRequest true "request" Format(json)
 // @Success 200
 // @Router /api/categories/products [post]
 func (h Handler) CreateProducts(req *http.Request) (resp interface{}, err error) {
@@ -61,7 +61,7 @@ func (h Handler) CreateProducts(req *http.Request) (resp interface{}, err error)
 // @Security ApiKeyAuth
 // @Tags products
 // @Produce json
-// @Param query storage.ReadProductsRequest true "request"
+// @Param  request query storage.ReadProductsRequest true "request" Format(json)
 // @Success 200 {object} []models.Product
 // @Router /api/categories/products [get]
 func (h Handler) ReadProducts(req *http.Request) (resp interface{}, err error) {

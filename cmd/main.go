@@ -1,7 +1,6 @@
 package main
 
 import (
-	_ "e-commerce/cmd/docs"
 	"e-commerce/config"
 	"e-commerce/internal/app/handler"
 	"e-commerce/internal/app/service"

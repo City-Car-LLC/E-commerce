@@ -10,7 +10,7 @@ import (
 // @Security ApiKeyAuth
 // @Tags categories
 // @Accept json
-// @Param body service.CreateCategoryRequest true "request"
+// @Param request body service.CreateCategoryRequest true "request" Format(json)
 // @Success 200
 // @Router /api/categories [post]
 func (h Handler) CreateCategories(req *http.Request) (resp interface{}, err error) {
@@ -26,7 +26,7 @@ func (h Handler) CreateCategories(req *http.Request) (resp interface{}, err erro
 // @Security ApiKeyAuth
 // @Tags cities
 // @Produce json
-// @Param query storage.ReadCategoriesRequest true "request"
+// @Param  request query storage.ReadCategoriesRequest true "request" Format(json)
 // @Success 200 {object} []models.Category
 // @Router /api/categories [get]
 func (h Handler) ReadCategories(req *http.Request) (resp interface{}, err error) {

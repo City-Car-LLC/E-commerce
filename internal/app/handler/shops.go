@@ -15,7 +15,7 @@ import (
 // @Security ApiKeyAuth
 // @Tags shops
 // @Accept json
-// @Param body multipart/form-data service.CreateShopRequest true "request"
+// @Param request body service.CreateShopRequest true "request" Format(json)
 // @Success 200
 // @Router /api/shops/categories/products [post]
 func (h Handler) CreateShops(req *http.Request) (resp interface{}, err error) {

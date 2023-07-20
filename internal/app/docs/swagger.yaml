@@ -1,0 +1,201 @@
+basePath: /
+definitions:
+  models.Category:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  models.Product:
+    properties:
+      category_id:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      shop_id:
+        type: string
+      status:
+        type: string
+    type: object
+  service.CreateCategoryRequest:
+    properties:
+      name:
+        type: string
+    type: object
+  service.CreateProductRequest:
+    properties:
+      category_id:
+        type: string
+      description:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      status:
+        type: string
+    type: object
+  service.CreateShopRequest:
+    properties:
+      closing_time:
+        type: string
+      logo:
+        type: string
+      name:
+        type: string
+      opening_time:
+        type: string
+      phone_number:
+        type: string
+    type: object
+info:
+  contact:
+    email: faranush.karimov@gmail.com
+    name: API Support
+    url: https://t.me/farafetch
+  license:
+    name: Custom License
+  title: E-COMMERCE API
+  version: "0.1"
+paths:
+  /api/categories:
+    get:
+      parameters:
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: per_page
+        type: integer
+      - in: query
+        name: search
+        type: string
+      - in: query
+        name: search_field
+        type: string
+      - in: query
+        items:
+          type: string
+        name: search_fields
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Category'
+            type: array
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - cities
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        format: json
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateCategoryRequest'
+      responses:
+        "200":
+          description: ""
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - categories
+  /api/categories/products:
+    get:
+      parameters:
+      - in: query
+        name: category_id
+        type: string
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: per_page
+        type: integer
+      - in: query
+        name: search
+        type: string
+      - in: query
+        name: search_field
+        type: string
+      - in: query
+        items:
+          type: string
+        name: search_fields
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Product'
+            type: array
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - products
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        format: json
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateProductRequest'
+      responses:
+        "200":
+          description: ""
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - products
+  /api/shops/categories/products:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        format: json
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateShopRequest'
+      responses:
+        "200":
+          description: ""
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - shops
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
