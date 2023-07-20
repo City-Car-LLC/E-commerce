@@ -3,7 +3,7 @@ package handler
 import (
 	"e-commerce/config"
 
-	_ "e-commerce/cmd/e-commerce/docs"
+	_ "e-commerce/docs"
 
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/chi/v5"
@@ -32,11 +32,16 @@ func NewRouter(h Handler, cfg *config.Config) *chi.Mux {
 
 	api := chi.NewRouter()
 	router.Mount("/api", api)
-	api.Route("/categories", func(r chi.Router) {
-		r.Post("/", H(h.CreateCategories))
-		r.Get("/", H(h.ReadCategories))
-		r.Post("/products/", H(h.CreateProducts))
-		r.Get("/products/", H(h.ReadProducts))
+	api.Route("/shops", func(r chi.Router) {
+		r.Post("/", H(h.CreateShops))
+		r.Route("/categories", func(r chi.Router) {
+			r.Post("/", H(h.CreateCategories))
+			r.Get("/", H(h.ReadCategories))
+			r.Route("/products", func(r chi.Router) {
+				r.Post("/", H(h.CreateProducts))
+				r.Get("/", H(h.ReadProducts))
+			})
+		})
 	})
 
 	return router
