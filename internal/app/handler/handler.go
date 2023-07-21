@@ -16,18 +16,18 @@ type Handler struct {
 
 func H(handle func(r *http.Request) (interface{}, error)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		// data, err := handle(r)
-		// if err == nil {
-		// 	reply(w, data)
-		// 	return
-		// }
-		// if e, ok := service.IsValidationError(err); ok {
-		// 	validationError(w, e)
-		// } else if _, ok := service.IsUnauthenticatedError(err); ok {
-		// 	unauthenticatedError(w, err)
-		// } else {
-		// 	internalError(w, err)
-		// }
+		data, err := handle(r)
+		if err == nil {
+			reply(w, data)
+			return
+		}
+		if e, ok := service.IsValidationError(err); ok {
+			validationError(w, e)
+		} else if _, ok := service.IsUnauthenticatedError(err); ok {
+			unauthenticatedError(w, err)
+		} else {
+			internalError(w, err)
+		}
 	}
 }
 

@@ -1,4 +1,3 @@
-basePath: /
 definitions:
   models.Category:
     properties:
@@ -69,57 +68,6 @@ info:
   title: E-COMMERCE API
   version: "0.1"
 paths:
-  /api/categories:
-    get:
-      parameters:
-      - in: query
-        name: page
-        type: integer
-      - in: query
-        name: per_page
-        type: integer
-      - in: query
-        name: search
-        type: string
-      - in: query
-        name: search_field
-        type: string
-      - in: query
-        items:
-          type: string
-        name: search_fields
-        type: array
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/models.Category'
-            type: array
-      security:
-      - ApiKeyAuth: []
-      tags:
-      - cities
-    post:
-      consumes:
-      - application/json
-      parameters:
-      - description: request
-        format: json
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/service.CreateCategoryRequest'
-      responses:
-        "200":
-          description: ""
-      security:
-      - ApiKeyAuth: []
-      tags:
-      - categories
   /api/categories/products:
     get:
       parameters:
@@ -138,7 +86,8 @@ paths:
       - in: query
         name: search_field
         type: string
-      - in: query
+      - collectionFormat: csv
+        in: query
         items:
           type: string
         name: search_fields
@@ -169,11 +118,63 @@ paths:
           $ref: '#/definitions/service.CreateProductRequest'
       responses:
         "200":
-          description: ""
+          description: OK
       security:
       - ApiKeyAuth: []
       tags:
       - products
+  /api/shops/categories:
+    get:
+      parameters:
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: per_page
+        type: integer
+      - in: query
+        name: search
+        type: string
+      - in: query
+        name: search_field
+        type: string
+      - collectionFormat: csv
+        in: query
+        items:
+          type: string
+        name: search_fields
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Category'
+            type: array
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - categories
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        format: json
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateCategoryRequest'
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - categories
   /api/shops/categories/products:
     post:
       consumes:
@@ -188,7 +189,7 @@ paths:
           $ref: '#/definitions/service.CreateShopRequest'
       responses:
         "200":
-          description: ""
+          description: OK
       security:
       - ApiKeyAuth: []
       tags:
