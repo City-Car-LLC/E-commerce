@@ -43,8 +43,10 @@ type Product struct {
 }
 
 type Category struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID       string     `json:"id"`
+	Name     string     `json:"name"`
+	ParentID string     `json:"parent_id"`
+	Children []Category `json:"children,omitempty"`
 }
 
 type Order struct {

@@ -1,1 +1,1 @@
-create domain ulid as char(26);
+--create domain ulid as char(26);
